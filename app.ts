@@ -1,17 +1,43 @@
-// CORE TYPES of TS
-/* 
-core data types
-number -> all numbers
-string -> all text values
-boolean -> true, false --> no truthy, falsy values 
-*/
+// const person: {
+//   name: string;
+//   age: number;
+//   hobbies: string[];
+//   // tuple
+//   role: [number, string];
+// } = {
+//   name: "bene",
+//   age: 27,
+//   hobbies: ["sports", "cooking"],
+//   role: [2, "author"],
+// };
 
-function add(n1: number, n2: number) {
-  return n1 + n2;
+// const ADMIN = 0;
+// const READ_ONLY = 1;
+// const AUTHOR = 2;
+
+enum Role {
+  ADMIN = 10,
+  // read_only gets assigned the value 11 automatically
+  READ_ONLY,
+  // strings are also possible
+  AUTHOR = "AUTHOR",
 }
 
-const num1 = 5;
-const num2 = 2.8;
+let person = {
+  name: "bene",
+  age: 27,
+  hobbies: ["sports", "cooking"],
+  role: Role.ADMIN,
+};
 
-const result = add(num1, num2);
-console.log(result);
+// any takes away all advantages ts gives you
+let fav: any[];
+fav = ["Sports", 1, {}, []];
+
+for (const hobby of person.hobbies) {
+  console.log(hobby.toUpperCase());
+}
+
+if (person.role === Role.ADMIN) {
+  console.log("is author");
+}
