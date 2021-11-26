@@ -1,43 +1,19 @@
-// const person: {
-//   name: string;
-//   age: number;
-//   hobbies: string[];
-//   // tuple
-//   role: [number, string];
-// } = {
-//   name: "bene",
-//   age: 27,
-//   hobbies: ["sports", "cooking"],
-//   role: [2, "author"],
-// };
+// union type -> func(input: number | string) 
+// ---> assign multiple possible types to a parameter
 
-// const ADMIN = 0;
-// const READ_ONLY = 1;
-// const AUTHOR = 2;
+function combine(input1: number | string, input2: number | string, resultType: string) {
+  let result;
+  if (typeof input1 === "number" && typeof input2 === "number") {
+    result = input1 + input2;
+  } else {
+    result = input1.toString() + input2.toString();
+  }
 
-enum Role {
-  ADMIN = 10,
-  // read_only gets assigned the value 11 automatically
-  READ_ONLY,
-  // strings are also possible
-  AUTHOR = "AUTHOR",
+  return result;
 }
 
-let person = {
-  name: "bene",
-  age: 27,
-  hobbies: ["sports", "cooking"],
-  role: Role.ADMIN,
-};
+const combinedNum = combine(30, 36, "as-number");
+console.log(combinedNum);
 
-// any takes away all advantages ts gives you
-let fav: any[];
-fav = ["Sports", 1, {}, []];
-
-for (const hobby of person.hobbies) {
-  console.log(hobby.toUpperCase());
-}
-
-if (person.role === Role.ADMIN) {
-  console.log("is author");
-}
+const combinedStr = combine("30", "36", "as-text");
+console.log(combinedStr);
