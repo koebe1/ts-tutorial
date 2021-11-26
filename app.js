@@ -1,29 +1,18 @@
-// define return type -> func(arg: type): returnType {}
-// ---> define the type you want to return from the function
-function add(n1, n2) {
-    return n1 + n2;
+// unknown type -> don't know yet which type im going to use
+// ---> better choice over any because forces a type check
+// ---> at runtime when reassigning
+var userInput;
+var userName;
+userInput = 5;
+userInput = "Max";
+if (typeof userInput === "string") {
+    userName = userInput;
 }
-// void type -> func(arg: type): void {}
-// ---> no return value
-// ---> gets assigned automatically with when only using side effects
-function printResult(num) {
-    console.log("Result: " + num);
+// never type ->
+function generateError(message, code) {
+    throw {
+        message: message,
+        errorCode: code
+    };
 }
-printResult(add(5, 12));
-// undefined type
-// ---> no value is returned but return keyword is used
-function returnNothing() {
-    return;
-}
-var someValue;
-// function type -> let variable: (a1: type, a2: type) => returnType
-// ---> allow to describe which function is used specifically
-var combineValues;
-combineValues = add;
-console.log(combineValues(8, 8));
-// callback
-function addAndHandle(n1, n2, cb) {
-    var result = n1 + n2;
-    cb(result);
-}
-addAndHandle(10, 20, function (num) { return console.log(num); });
+generateError("An error occured", 500);
